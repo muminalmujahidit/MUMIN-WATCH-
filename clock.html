@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>মোমেন্ট ওয়াচ · Moment Watch</title>
+<meta name="theme-color" content="#6d5dfc">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="মোমেন্ট">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--bg:#eef0ff;--card:#fff;--tx:#161a2b;--mu:#6b7189;--ac:#5b4ef0;--ac2:#e6e4ff;--bd:#e0e2f3;--rd:#e5484d;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1020;--card:#181b30;--tx:#eef0fb;--mu:#9aa0be;--ac:#818cf8;--ac2:#2a2f5c;--bd:#2a2e4a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1020;--card:#181b30;--tx:#eef0fb;--mu:#9aa0be;--ac:#818cf8;--ac2:#2a2f5c;--bd:#2a2e4a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;padding-bottom:78px}
+main{max-width:520px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;margin-bottom:12px}
+.big{font-size:56px;font-weight:700;text-align:center;font-variant-numeric:tabular-nums;letter-spacing:1px}
+.sub{text-align:center;color:var(--mu)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;background:none;border:0;color:var(--mu);font:inherit;font-size:13px;padding:8px 2px;border-radius:12px}
+nav button.on{color:var(--ac);background:var(--ac2);font-weight:700}
+button.p{background:var(--ac);color:#fff;border:0;border-radius:12px;padding:10px 16px;font:inherit;font-weight:600}
+button.g{background:var(--ac2);color:var(--ac);border:0;border-radius:12px;padding:10px 14px;font:inherit}
+button.d{background:none;border:0;color:var(--rd);font:inherit}
+input,select{font:inherit;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:9px;max-width:100%}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sp{justify-content:space-between}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}
+.chip{border:1px solid var(--bd);border-radius:20px;padding:5px 10px;font-size:13px;color:var(--mu);background:none;font-family:inherit}
+.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.al{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.al .t{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums}
+.al small{color:var(--mu);display:block}
+.sw{position:relative;width:46px;height:26px;flex:none}
+.sw input{opacity:0;position:absolute;inset:0;width:100%;height:100%;margin:0}
+.sw i{position:absolute;inset:0;background:var(--bd);border-radius:20px;transition:.2s;pointer-events:none}
+.sw i:after{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.sw input:checked+i{background:var(--ac)}.sw input:checked+i:after{left:23px}
+.tab{display:none}.tab.on{display:block}
+.wc{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd)}.wc:last-child{border:0}
+#ring{position:fixed;inset:0;background:rgba(10,12,30,.92);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:9;color:#fff;text-align:center}
+#ring .big{font-size:64px}
+#hint{color:var(--mu);font-size:13px;margin-top:6px}
+.mic{background:var(--rd)!important}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.nm{font-size:26px;font-weight:700;line-height:1.2;background:linear-gradient(90deg,var(--ac),#c04df9);-webkit-background-clip:text;background-clip:text;color:transparent}.en{font-size:11px;color:var(--mu);letter-spacing:3px;text-transform:uppercase}
+.hero{background:linear-gradient(135deg,#4f46e5,#7c3aed 55%,#c026d3);color:#fff;border-radius:28px;padding:20px 16px;margin-bottom:12px;box-shadow:0 12px 30px rgba(99,70,229,.35)}.hero .sub{color:rgba(255,255,255,.88)}.hero .big{font-size:44px}.an{display:block;width:190px;height:190px;margin:0 auto 8px}
+.card{box-shadow:0 2px 12px rgba(40,40,100,.07);border-radius:20px}nav{border-radius:22px 22px 0 0;box-shadow:0 -4px 20px rgba(40,40,100,.1)}.tip{font-size:13px;color:var(--mu);line-height:1.6}
+</style>
+</head>
+<body>
+<main>
+<header class="hd"><div><div class="nm">মোমেন্ট ওয়াচ</div><div class="en">Moment Watch</div></div><button class="p" id="inst" style="display:none">📲 ইনস্টল</button></header>
+<section class="tab on" id="t0">
+ <div class="hero"><svg viewBox="0 0 200 200" class="an"><circle cx="100" cy="100" r="94" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><g id="tk"></g><line id="hh" x1="100" y1="100" x2="100" y2="58" stroke="#fff" stroke-width="6" stroke-linecap="round"/><line id="mh" x1="100" y1="100" x2="100" y2="36" stroke="#fff" stroke-width="4" stroke-linecap="round"/><line id="sh" x1="100" y1="112" x2="100" y2="26" stroke="#ffd166" stroke-width="2" stroke-linecap="round"/><circle cx="100" cy="100" r="5" fill="#ffd166"/></svg><div class="big" id="clk">--:--:--</div><div class="sub" id="dt"></div></div>
+ <div class="card"><b>বিশ্বঘড়ি</b><div id="wc"></div></div>
+ <div class="card tip"><b style="color:var(--tx)">📲 ফোনে ইনস্টল করুন</b><br>অ্যান্ড্রয়েড (Chrome): মেনু ⋮ → “Install app” বা “হোম স্ক্রিনে যোগ করুন”।<br>আইফোন (Safari): শেয়ার বাটন → “Add to Home Screen”।</div>
+</section>
+
+<section class="tab" id="t1">
+ <div class="card">
+  <div class="row sp"><b>নতুন অ্যালার্ম</b><button class="p" id="vbtn">🎤 বলে সেট করুন</button></div>
+  <div id="hint">যেমন বলুন: “সকাল ৭টা ৩০ মিনিটে মেলোডি” বা “রাত ১০টায় বেল”</div>
+  <div class="row" style="margin-top:10px"><input type="time" id="nt" value="07:00"><input id="nl" placeholder="নাম/মনে রাখার বিষয়" style="flex:1;min-width:120px"></div>
+  <div class="chips" id="nd"></div>
+  <div class="row"><select id="nr"></select><button class="g" id="tst">▶ শুনুন</button><button class="p" id="add" style="margin-left:auto">যোগ করুন</button></div>
+ </div>
+ <div id="als"></div>
+ <div class="sub" id="hint2" style="font-size:12px">অ্যালার্ম বাজতে হলে এই পেজটি খোলা থাকতে হবে।</div>
+</section>
+
+<section class="tab" id="t2">
+ <div class="card"><div class="big" id="swd">00:00.00</div>
+  <div class="row" style="justify-content:center;margin-top:10px"><button class="p" id="sws">শুরু</button><button class="g" id="swl">ল্যাপ</button><button class="g" id="swr">রিসেট</button></div>
+  <div id="laps" style="margin-top:10px"></div></div>
+</section>
+
+<section class="tab" id="t3">
+ <div class="card"><div class="big" id="tmd">05:00</div>
+  <div class="row" style="justify-content:center;margin:10px 0"><input type="number" id="tmm" min="0" value="5" style="width:80px"> মিনিট <input type="number" id="tms" min="0" max="59" value="0" style="width:80px"> সেকেন্ড</div>
+  <div class="chips" style="justify-content:center" id="tpre"></div>
+  <div class="row" style="justify-content:center"><button class="p" id="tmgo">শুরু</button><button class="g" id="tmrs">রিসেট</button></div></div>
+</section>
+</main>
+
+<div id="ring"><div style="font-size:60px">⏰</div><div class="big" id="rt"></div><div id="rl" style="font-size:20px"></div>
+ <div class="row"><button class="g" id="snz">৫ মিনিট স্নুজ</button><button class="p" id="stp">বন্ধ করুন</button></div></div>
+
+<nav id="nav"></nav>
+
+<script>
+var BN="০১২৩৪৫৬৭৮৯",DAYS=["রবি","সোম","মঙ্গল","বুধ","বৃহ","শুক্র","শনি"];
+function bn(n){return String(n).replace(/\d/g,function(d){return BN[d]})}
+function en(s){return s.replace(/[০-৯]/g,function(d){return BN.indexOf(d)})}
+function p2(n){return (n<10?"0":"")+n}
+var TONES={beep:"বিপ বিপ",bell:"বেল",melody:"মেলোডি",siren:"সাইরেন"};
+var KEYS={beep:["বিপ","beep"],bell:["বেল","ঘণ্টা","ঘন্টা","bell"],melody:["মেলোডি","সুর","melody"],siren:["সাইরেন","siren"]};
+var alarms=[];
+try{alarms=JSON.parse(localStorage.getItem("alarms")||"[]")}catch(e){}
+function save(){try{localStorage.setItem("alarms",JSON.stringify(alarms))}catch(e){}}
+function $(i){return document.getElementById(i)}
+
+/* tabs */
+var names=["ঘড়ি","অ্যালার্ম","স্টপওয়াচ","টাইমার"],icons=["🕒","⏰","⏱","⏳"];
+names.forEach(function(n,i){var b=document.createElement("button");b.innerHTML=icons[i]+"<br>"+n;b.onclick=function(){show(i)};$("nav").appendChild(b)});
+function show(i){document.querySelectorAll(".tab").forEach(function(t,k){t.classList.toggle("on",k==i)});[].forEach.call($("nav").children,function(b,k){b.classList.toggle("on",k==i)})}
+show(0);
+
+/* sound */
+var ctx=null,sndT=null;
+function ac(){try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state=="suspended")ctx.resume()}catch(e){}return ctx}
+function note(f,d,type,v){var c=ac();if(!c)return;var o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.value=f;g.gain.value=v||.25;g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d)}
+function playTone(name,once){stopTone();var i=0,m=[523,659,784,659,880,784,659,523];
+ var step={beep:function(){note(880,.25,"square",.15)},bell:function(){note(1318,1,"sine",.35);note(2636,.6,"sine",.1)},melody:function(){note(m[i++%8],.28,"triangle",.4)},siren:function(){var k=i++%2;note(k?700:1000,.45,"sawtooth",.15)}}[name]||function(){note(880,.25,"square",.15)};
+ var iv={beep:500,bell:1200,melody:300,siren:500}[name]||500;step();if(once){setTimeout(stopTone,iv*3);sndT=setInterval(step,iv);return}sndT=setInterval(step,iv)}
+function stopTone(){if(sndT){clearInterval(sndT);sndT=null}}
+
+/* clock */
+var WZ=[["ঢাকা","Asia/Dhaka"],["নিউ ইয়র্ক","America/New_York"],["লন্ডন","Europe/London"],["দুবাই","Asia/Dubai"],["টোকিও","Asia/Tokyo"]];
+function tick(){var d=new Date();
+ $("clk").textContent=bn(d.toLocaleTimeString("en-GB",{hour12:false}));
+ $("dt").textContent=d.toLocaleDateString("bn-BD",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+ $("wc").innerHTML=WZ.map(function(z){var t="";try{t=bn(d.toLocaleTimeString("en-GB",{timeZone:z[1],hour:"2-digit",minute:"2-digit"}))}catch(e){}return '<div class="wc"><span>'+z[0]+'</span><b>'+t+'</b></div>'}).join("");
+ var s=d.getSeconds(),mm=d.getMinutes(),hr=d.getHours()%12;
+ $("sh").setAttribute("transform","rotate("+s*6+" 100 100)");$("mh").setAttribute("transform","rotate("+(mm+s/60)*6+" 100 100)");$("hh").setAttribute("transform","rotate("+(hr+mm/60)*30+" 100 100)");
+ checkAlarms(d)}
+var fired="";
+function checkAlarms(d){var k=d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"-"+d.getHours()+"-"+d.getMinutes();
+ if(d.getSeconds()>5||k==fired)return;
+ for(var i=0;i<alarms.length;i++){var a=alarms[i];if(!a.on)continue;var p=a.t.split(":");
+  if(+p[0]!=d.getHours()||+p[1]!=d.getMinutes())continue;
+  if(a.days.length&&a.days.indexOf(d.getDay())<0)continue;
+  fired=k;ring(a);if(!a.days.length){a.on=false;save();render()}break}}
+var cur=null;
+function ring(a){cur=a;$("rt").textContent=bn(a.t);$("rl").textContent=a.l||"অ্যালার্ম";$("ring").style.display="flex";playTone(a.r);if(navigator.vibrate)navigator.vibrate([500,300,500,300,500])}
+$("stp").onclick=function(){stopTone();$("ring").style.display="none"};
+$("snz").onclick=function(){stopTone();$("ring").style.display="none";var d=new Date(Date.now()+300000);alarms.push({id:Date.now(),t:p2(d.getHours())+":"+p2(d.getMinutes()),l:(cur&&cur.l||"অ্যালার্ম")+" (স্নুজ)",days:[],r:cur?cur.r:"beep",on:true});save();render()};
+
+/* alarm form */
+var sel=[];
+$("nd").innerHTML=DAYS.map(function(n,i){return '<button class="chip" data-i="'+i+'">'+n+'</button>'}).join("");
+$("nd").onclick=function(e){var i=e.target.getAttribute("data-i");if(i===null)return;i=+i;var k=sel.indexOf(i);if(k<0)sel.push(i);else sel.splice(k,1);e.target.classList.toggle("on")};
+$("nr").innerHTML=Object.keys(TONES).map(function(k){return '<option value="'+k+'">'+TONES[k]+'</option>'}).join("");
+$("tst").onclick=function(){playTone($("nr").value,true)};
+$("add").onclick=function(){ac();addAlarm($("nt").value,$("nl").value,sel.slice(),$("nr").value)};
+function addAlarm(t,l,days,r){if(!t)return;alarms.push({id:Date.now(),t:t,l:l,days:days,r:r,on:true});alarms.sort(function(a,b){return a.t<b.t?-1:1});save();render();$("nl").value=""}
+function dayText(a){if(!a.days.length)return"একবার";if(a.days.length==7)return"প্রতিদিন";return a.days.slice().sort().map(function(i){return DAYS[i]}).join(", ")}
+function render(){$("als").innerHTML=alarms.length?alarms.map(function(a,i){var p=a.t.split(":"),h=+p[0],ap=h<6?"ভোর":h<12?"সকাল":h<15?"দুপুর":h<18?"বিকাল":h<20?"সন্ধ্যা":"রাত",h12=h%12||12;
+ return '<div class="card al"><div><div class="t">'+ap+" "+bn(p2(h12))+":"+bn(p[1])+'</div><small>'+(a.l?a.l+" · ":"")+dayText(a)+'</small>'+
+ '<select data-r="'+i+'" style="margin-top:6px;padding:4px">'+Object.keys(TONES).map(function(k){return '<option value="'+k+'"'+(k==a.r?" selected":"")+'>🔔 '+TONES[k]+'</option>'}).join("")+'</select> <button class="g" data-v="'+i+'" style="padding:4px 10px">🎤</button></div>'+
+ '<div style="text-align:right"><label class="sw"><input type="checkbox" data-o="'+i+'"'+(a.on?" checked":"")+'><i></i></label><br><button class="d" data-x="'+i+'">মুছুন</button></div></div>'}).join(""):'<div class="sub" style="padding:20px">কোনো অ্যালার্ম নেই</div>'}
+$("als").onclick=function(e){var t=e.target,x=t.getAttribute("data-x"),v=t.getAttribute("data-v");
+ if(x!==null){alarms.splice(+x,1);save();render()}
+ else if(v!==null){listen(function(s){var k=toneFrom(s);if(k){alarms[+v].r=k;save();render();playTone(k,true)}else $("hint2").textContent="রিংটোন বুঝতে পারিনি: "+s})}};
+$("als").onchange=function(e){var t=e.target,o=t.getAttribute("data-o"),r=t.getAttribute("data-r");
+ if(o!==null){alarms[+o].on=t.checked;save()}else if(r!==null){alarms[+r].r=t.value;save();playTone(t.value,true)}};
+
+/* voice */
+function toneFrom(s){s=s.toLowerCase();for(var k in KEYS)for(var j=0;j<KEYS[k].length;j++)if(s.indexOf(KEYS[k][j])>=0)return k;return null}
+function listen(cb){var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){$("hint2").textContent="এই ব্রাউজারে ভয়েস সাপোর্ট নেই (Chrome ব্যবহার করুন)।";return}
+ ac();var r=new SR();r.lang="bn-BD";r.interimResults=false;r.onresult=function(e){cb(e.results[0][0].transcript)};
+ r.onerror=function(){$("hint").textContent="মাইক্রোফোন ব্যবহার করা যায়নি"};
+ r.onend=function(){$("vbtn").classList.remove("mic")};$("vbtn").classList.add("mic");r.start()}
+$("vbtn").onclick=function(){listen(function(s){$("hint").textContent="শুনেছি: “"+s+"”";var q=en(s),m=q.match(/(\d{1,2})(?:\D+?(\d{1,2}))?/);
+ if(!m){$("hint").textContent="সময় বুঝতে পারিনি: “"+s+"”";return}
+ var h=+m[1],mi=m[2]?+m[2]:0;if(/দুপুর|বিকাল|বিকেল|সন্ধ্যা|সন্ধ্যায়|রাত/.test(q)){if(h<12)h+=12;if(/রাত/.test(q)&&h==12&&!/দুপুর/.test(q))h=0;if(/রাত/.test(q)&&m[1]==12)h=0}
+ else if(/সকাল|ভোর/.test(q)&&h==12)h=0;
+ if(/আধা|সাড়ে/.test(q)&&!m[2])mi=30;
+ var days=[];if(/প্রতিদিন|রোজ/.test(q))days=[0,1,2,3,4,5,6];else DAYS.forEach(function(d,i){if(q.indexOf(d)>=0)days.push(i)});
+ var tn=toneFrom(q)||$("nr").value;
+ addAlarm(p2(h%24)+":"+p2(mi%60),"",days,tn);$("hint").textContent="✅ "+bn(p2(h%24))+":"+bn(p2(mi%60))+" অ্যালার্ম সেট হয়েছে ("+TONES[tn]+")"})};
+
+/* stopwatch */
+var sw0=0,swE=0,swI=null,laps=[];
+function fmt(ms){var c=Math.floor(ms/10)%100,s=Math.floor(ms/1000)%60,m=Math.floor(ms/60000);return bn(p2(m)+":"+p2(s)+"."+p2(c))}
+$("sws").onclick=function(){if(swI){swE+=Date.now()-sw0;clearInterval(swI);swI=null;$("sws").textContent="চালু"}else{sw0=Date.now();swI=setInterval(function(){$("swd").textContent=fmt(swE+Date.now()-sw0)},30);$("sws").textContent="থামান"}};
+$("swl").onclick=function(){if(!swI)return;laps.unshift(fmt(swE+Date.now()-sw0));$("laps").innerHTML=laps.map(function(l,i){return '<div class="wc"><span>ল্যাপ '+bn(laps.length-i)+'</span><b>'+l+'</b></div>'}).join("")};
+$("swr").onclick=function(){clearInterval(swI);swI=null;swE=0;laps=[];$("swd").textContent="০০:০০.০০";$("laps").innerHTML="";$("sws").textContent="শুরু"};
+
+/* timer */
+var tmI=null,tmEnd=0,tmLeft=300;
+function tmShow(s){$("tmd").textContent=bn(p2(Math.floor(s/60))+":"+p2(s%60))}
+[1,5,10,15,30].forEach(function(m){var b=document.createElement("button");b.className="chip";b.textContent=bn(m)+" মি";b.onclick=function(){$("tmm").value=m;$("tms").value=0;tmReset()};$("tpre").appendChild(b)});
+function tmReset(){clearInterval(tmI);tmI=null;tmLeft=(+$("tmm").value||0)*60+(+$("tms").value||0);tmShow(tmLeft);$("tmgo").textContent="শুরু"}
+$("tmm").oninput=$("tms").oninput=tmReset;$("tmrs").onclick=tmReset;
+$("tmgo").onclick=function(){ac();if(tmI){clearInterval(tmI);tmI=null;$("tmgo").textContent="চালু";return}
+ if(tmLeft<=0)return;tmEnd=Date.now()+tmLeft*1000;$("tmgo").textContent="থামান";
+ tmI=setInterval(function(){tmLeft=Math.max(0,Math.round((tmEnd-Date.now())/1000));tmShow(tmLeft);
+  if(tmLeft<=0){clearInterval(tmI);tmI=null;$("tmgo").textContent="শুরু";ring({t:"00:00",l:"টাইমার শেষ!",r:"bell",days:[]});$("rt").textContent="০০:০০"}},250)};
+tmReset();
+(function(){try{
+ var t="";for(var i=0;i<12;i++)t+='<line x1="100" y1="10" x2="100" y2="'+(i%3?16:22)+'" stroke="#fff" stroke-width="'+(i%3?2:3)+'" stroke-linecap="round" transform="rotate('+i*30+' 100 100)"/>';$("tk").innerHTML=t;
+ function icon(s){var c=document.createElement("canvas");c.width=c.height=s;var x=c.getContext("2d"),g=x.createLinearGradient(0,0,s,s);g.addColorStop(0,"#4f46e5");g.addColorStop(1,"#c026d3");x.fillStyle=g;x.fillRect(0,0,s,s);x.strokeStyle="#fff";x.lineWidth=s*.04;x.lineCap="round";x.beginPath();x.arc(s/2,s/2,s*.28,0,7);x.stroke();x.beginPath();x.moveTo(s/2,s*.34);x.lineTo(s/2,s/2);x.lineTo(s*.62,s*.58);x.stroke();return c.toDataURL("image/png")}
+ var a=icon(192),b=icon(512),m={name:"মোমেন্ট ওয়াচ",short_name:"Moment",start_url:location.href.split("#")[0],scope:location.href.split("#")[0],display:"standalone",background_color:"#0e1020",theme_color:"#6d5dfc",lang:"bn",icons:[{src:a,sizes:"192x192",type:"image/png"},{src:b,sizes:"512x512",type:"image/png",purpose:"any maskable"}]};
+ var l=document.createElement("link");l.rel="manifest";l.href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:"application/manifest+json"}));document.head.appendChild(l);
+ var ai=document.createElement("link");ai.rel="apple-touch-icon";ai.href=a;document.head.appendChild(ai);
+ var dp=null;addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;$("inst").style.display="inline-block"});
+ $("inst").onclick=function(){if(dp){dp.prompt();dp=null;$("inst").style.display="none"}};
+ addEventListener("appinstalled",function(){$("inst").style.display="none"});
+}catch(e){}})();
+render();tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
